@@ -10,18 +10,25 @@ export const makeRoutes = <
   Config = RoutesList<Paths>,
 >(routesConfig: Config & RoutesValid<Paths, Config>) => routesConfig;
 
+// @ts-ignore
 export const routes = makeRoutes({
   '/': {
     component: React.lazy(() => import('../app/components/routes/dashboard')),
     window: {},
     menu: [
       {
-        label: 'Dashboard',
-        bridgeAction: { type: 'createWindow', path: '/' },
-      },
-      {
-        label: 'Settings',
-        bridgeAction: { type: 'createWindow', path: '/settings' },
+        label: 'Window',
+        type: 'submenu',
+        submenu: [
+          {
+            label: 'Dashboard',
+            bridgeAction: { type: 'createWindow', path: '/' },
+          },
+          {
+            label: 'Settings',
+            bridgeAction: { type: 'createWindow', path: '/settings' },
+          },
+        ],
       },
     ],
   },
@@ -30,8 +37,14 @@ export const routes = makeRoutes({
     window: {},
     menu: [
       {
-        label: 'Dashboard',
-        bridgeAction: { type: 'createWindow', path: '/' },
+        label: 'Window',
+        type: 'submenu',
+        submenu: [
+          {
+            label: 'Dashboard',
+            bridgeAction: { type: 'createWindow', path: '/' },
+          },
+        ],
       },
     ],
   },

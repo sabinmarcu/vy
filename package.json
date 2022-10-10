@@ -1,6 +1,6 @@
 {
   "name": "vy",
-  "productName": "vy",
+  "productName": "Viewy",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": ".webpack/main",

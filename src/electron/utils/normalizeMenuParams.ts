@@ -1,10 +1,12 @@
 import {
   CustomMenuParams,
-} from '../types/electron';
+} from '../../types/electron';
 import {
   bridgeActions,
+} from '../bridge/index';
+import {
   isBridgeAction,
-} from './bridge/index';
+} from '../bridge/isBridgeAction';
 
 export const normalizeMenuParams = (
   menuParams: Readonly<CustomMenuParams[]>,
@@ -12,6 +14,7 @@ export const normalizeMenuParams = (
   menuParams.map((it) => {
     const { bridgeAction, ...rest } = it;
     if (isBridgeAction(bridgeAction)) {
+      // @ts-ignore
       const { type, ...actionProps } = bridgeAction;
       const { handler } = bridgeActions.find(
         ({ type: actionType }) => actionType === type,
