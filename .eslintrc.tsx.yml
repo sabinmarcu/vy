@@ -1,0 +1,6 @@
+overrides:
+  - files: 
+      - "*.tsx"
+    extends: 
+      - airbnb
+      - airbnb-typescript

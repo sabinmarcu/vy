@@ -1,0 +1,11 @@
+overrides: 
+  - files: 
+      - "*.spec.type.ts"
+      - "*.spec.type.tsx"
+    extends:
+      - plugin:eslint-plugin-expect-type/recommended
+    plugins: 
+      - eslint-plugin-expect-type
+    rules: 
+      "@typescript-eslint/no-unused-vars": 0
+      "max-len": 0

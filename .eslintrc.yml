@@ -1,0 +1,10 @@
+extends: 
+  - ./.eslintrc.js.yml
+  - ./.eslintrc.jsx.yml
+  - ./.eslintrc.ts.yml
+  - ./.eslintrc.tsx.yml
+  - ./.eslintrc.tsconfig.yml
+  - ./.eslintrc.config.yml
+  - ./.eslintrc.ts.expect.yml
+  - ./.eslintrc.overrides.yml
+root: true

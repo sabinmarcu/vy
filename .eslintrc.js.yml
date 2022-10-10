@@ -1,0 +1,4 @@
+overrides: 
+  - files: 
+      - "*.js"
+    extends: 'airbnb-base'

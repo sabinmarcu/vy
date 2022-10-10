@@ -1,0 +1,49 @@
+overrides:
+  - files: 
+      - "*.ts"
+      - "*.tsx"
+      - "*.js"
+      - "*.jsx"
+    plugins: 
+      - modules-newlines
+    settings:
+      import/resolver:
+        node: 
+          extensions:
+            - ".mjs"
+            - ".js"
+            - ".jsx"
+            - ".json"
+            - ".ts"
+            - ".tsx"
+            - ".d.ts"
+    rules: 
+      modules-newlines/import-declaration-newline: "error"
+      modules-newlines/export-declaration-newline: "error"
+      global-require: 0
+      import/no-extraneous-dependencies: 0
+      import/prefer-default-export: 0
+      react/react-in-jsx-scope: 0
+      '@typescript-eslint/indent':
+        - error
+        - 2
+        - ignoredNodes:
+            - TSTypeParameterInstantiation
+      object-curly-newline: 
+        - error
+        - ObjectExpression:
+            minProperties: 4
+            multiline: true
+            consistent: true
+          ObjectPattern:
+            minProperties: 4
+            multiline: true
+            consistent: true
+          ImportDeclaration:
+            minProperties: 1
+            multiline: true
+            consistent: true
+          ExportDeclaration:
+            minProperties: 1
+            multiline: true
+            consistent: true
