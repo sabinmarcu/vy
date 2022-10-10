@@ -11,6 +11,4 @@ import {
 } from './index';
 
 type CreateWindowType = ExtractFromBridgeActions<BridgeActions, 'createWindow'>;
-//   ^? type CreateWindowType = {
-//          path: "/" | "/settings";
-//      } & BridgeActionType<"createWindow">
+//   ^? type CreateWindowType = never

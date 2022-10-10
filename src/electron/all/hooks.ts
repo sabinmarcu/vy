@@ -4,21 +4,21 @@ import {
 } from 'electron';
 import {
   onWindowUpdate,
-} from './darwin/index';
+} from '../darwin/index';
 import {
   PlatformMap,
   WindowUpdate,
-} from './types';
+} from '../types';
 import {
   makeMenu,
-} from './utils/makeMenu';
+} from '../utils/makeMenu';
 import {
   perPlatform,
-} from './utils/perPlatform';
+} from '../utils/perPlatform';
 import {
   getWindow,
   setActiveWindow,
-} from './utils/windows';
+} from '../utils/windows';
 
 const updateForge: PlatformMap<WindowUpdate> = {
   darwin: onWindowUpdate,
