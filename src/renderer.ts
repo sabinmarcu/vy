@@ -26,4 +26,4 @@
  * ```
  */
 
-import './app/core/index.tsx';
+import './app/core/index';

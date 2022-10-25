@@ -6,7 +6,7 @@ import {
 } from 'react-helmet';
 import {
   isDev,
-} from '../../utils/isDev';
+} from '../../utils/platform';
 
 export const Settings :FC = () => (
   <>

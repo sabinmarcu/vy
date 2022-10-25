@@ -30,7 +30,6 @@ type CustomCreateWindowAction = ExtractFromBridgeActions<
 type CreateWindowProps = BridgeActionProps<CustomCreateWindowAction>;
 
 export const createWindow = (
-  // @ts-ignore
   { path = '/' }: CreateWindowProps = {} as any,
 ): void => {
   const route = routes[path];
@@ -44,7 +43,6 @@ export const createWindow = (
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
-    // @ts-ignore
     ...windowParams,
     title: 'Electron Forge',
     webPreferences: {
@@ -65,7 +63,6 @@ export const createWindow = (
 };
 
 export const createWindowPackage: BridgeActionPackage<CustomCreateWindowAction> = {
-  // @ts-ignore
   type: 'createWindow',
   handler: createWindow,
 };

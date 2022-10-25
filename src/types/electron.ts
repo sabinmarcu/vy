@@ -8,8 +8,8 @@ import {
 export type CustomMenuParams<
   Actions = GenericBridgeActions,
 > =
-  & MenuItemConstructorOptions
+  & Omit<MenuItemConstructorOptions, 'submenu'>
   & {
     bridgeAction?: Actions,
-    submenu?: CustomMenuParams<Actions>[]
+    submenu?: Readonly<CustomMenuParams<Actions>[]>
   };

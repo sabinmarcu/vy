@@ -103,3 +103,37 @@ type ExtractActionTest2 = ExtractActionFromRoutesList<RoutesTest2, 'createWindow
 
 type ExtractActionTest2Path = ExtractActionTest2['path'];
 //   ^? type ExtractActionTest2Path = "/" | "/settings"
+
+type RoutesTest2Test = RoutesTest2 extends RoutesList<RoutePath> ? true : false;
+//    ^? type RoutesTest2Test = true
+
+const routesTest3 = {
+  '/': {
+    menu: [
+      {
+        label: 'Window',
+        role: 'submenu',
+      },
+    ],
+  },
+} as const;
+
+type RoutesTest3Model = RoutesList<'/'>;
+//   ^? type RoutesTest3Model = {
+//          readonly "/": Route<BridgeAction<"createWindow", {
+//              path: "/";
+//          }>>;
+//      }
+
+type RoutesTest3 = typeof routesTest3;
+//    ^? type RoutesTest3 = {
+//           readonly '/': {
+//               readonly menu: readonly [{
+//                   readonly label: "Window";
+//                   readonly role: "submenu";
+//               }];
+//           };
+//       }
+
+type RoutesTest3Test = RoutesTest3 extends RoutesTest3Model ? true : false;
+//    ^? type RoutesTest3Test = false

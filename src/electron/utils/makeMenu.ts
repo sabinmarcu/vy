@@ -23,16 +23,63 @@ import {
 } from './perPlatform';
 import {
   developerMenu,
-} from './developerMenu';
+} from '../constants/developerMenu';
+import {
+  windowMenu,
+} from '../constants/windowMenu';
 
 export const menuForge: PlatformMap<MenuCreator> = {
   win32: createWin32Menu,
   darwin: createDarwinMenu,
 };
 
+export type GenericMenuParams = CustomMenuParams<any>;
+
+export const normalizeTemplate = (
+  items: GenericMenuParams[],
+): MenuItemConstructorOptions[] => {
+  const mapping = items
+    .map(({ label }) => label)
+    .reduce(
+      (acc, label) => {
+        const result = items.filter(({ label: l }) => l === label)
+          .reduce(
+            (resultAcc, it) => {
+              const { submenu: currentSubmenu = [] } = it;
+              const { submenu: prevSubmenu = [] } = resultAcc;
+              let submenu: GenericMenuParams[];
+              if (Array.isArray(currentSubmenu) && Array.isArray(prevSubmenu)) {
+                if (currentSubmenu.length) {
+                  submenu = [
+                    ...currentSubmenu,
+                    { type: 'separator' },
+                    ...prevSubmenu,
+                  ];
+                } else {
+                  submenu = prevSubmenu;
+                }
+              }
+              return {
+                ...resultAcc,
+                ...it,
+                submenu: submenu?.length ? submenu : undefined,
+              };
+            },
+            {},
+          );
+        return {
+          ...acc,
+          [label]: result,
+        };
+      },
+      {},
+    );
+  return Object.values(mapping);
+};
+
 export const makeMenu = (menuParams: Readonly<CustomMenuParams[]>) => {
-  const postMenuItems: MenuItemConstructorOptions[] = [];
-  const preMenuItems: MenuItemConstructorOptions[] = [];
+  const postMenuItems: GenericMenuParams[] = [];
+  const preMenuItems: GenericMenuParams[] = [];
 
   if (process.env.DEV === 'true') {
     postMenuItems.push(developerMenu);
@@ -52,11 +99,13 @@ export const makeMenu = (menuParams: Readonly<CustomMenuParams[]>) => {
       }), {}),
   );
 
-  const menu = Menu.buildFromTemplate([
+  const template = normalizeTemplate([
     ...preMenuItems,
-    // @ts-ignore
     ...normalizeMenuParams(menuParams),
     ...postMenuItems,
+    windowMenu,
   ]);
+
+  const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 };

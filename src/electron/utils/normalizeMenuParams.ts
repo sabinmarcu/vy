@@ -14,7 +14,6 @@ export const normalizeMenuParams = (
   menuParams.map((it) => {
     const { bridgeAction, ...rest } = it;
     if (isBridgeAction(bridgeAction)) {
-      // @ts-ignore
       const { type, ...actionProps } = bridgeAction;
       const { handler } = bridgeActions.find(
         ({ type: actionType }) => actionType === type,

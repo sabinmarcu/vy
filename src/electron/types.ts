@@ -1,11 +1,13 @@
 import {
   BrowserWindow,
-  MenuItemConstructorOptions,
 } from 'electron';
 
 import {
   Routes,
 } from '../routes/index';
+import {
+  CustomMenuParams,
+} from '../types/electron';
 
 export interface WindowConfig {
   window: BrowserWindow,
@@ -13,8 +15,8 @@ export interface WindowConfig {
 }
 
 export interface MenuCreator {
-  pre: () => MenuItemConstructorOptions[],
-  post: () => MenuItemConstructorOptions[],
+  pre: () => CustomMenuParams<any>[],
+  post: () => CustomMenuParams<any>[],
 }
 
 export interface WindowUpdate {

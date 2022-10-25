@@ -11,10 +11,10 @@ import {
 } from '../types';
 import {
   isDev,
-} from '../../app/utils/isDev';
+} from '../../app/utils/platform';
 import {
   developerMenu,
-} from '../utils/developerMenu';
+} from '../constants/developerMenu';
 
 const {
   TouchBarLabel,
@@ -40,7 +40,7 @@ export const menuItemToTouchBar = (
 };
 
 export const menuToTouchBar = (
-  menu: MenuBarItems,
+  menu: Readonly<MenuBarItems>,
   win: BrowserWindow,
   toParent?: () => void,
 ): TouchBar => {
@@ -105,7 +105,6 @@ export const createTouchBarFromMenu = (config: WindowConfig) => {
   if (!route) {
     return undefined;
   }
-  // @ts-ignore
   const params = normalizeMenuParams(route.menu);
   const touchBar = menuToTouchBar(params, win);
   return touchBar;

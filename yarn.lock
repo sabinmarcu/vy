@@ -9564,6 +9564,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-deepmerge@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "ts-deepmerge@npm:4.0.0"
+  checksum: f0b3102a411895f1b2dce4387a94ea15a5ba0ca010e532ee3b88f942725d7c8d228ec9be20f4f7e95ebfd7aa1078cd8ac0dfa335358553423ee8b473d83a8d66
+  languageName: node
+  linkType: hard
+
 "ts-loader@npm:^9.2.2":
   version: 9.4.1
   resolution: "ts-loader@npm:9.4.1"
@@ -9948,6 +9955,7 @@ __metadata:
     react-helmet: ^6.1.0
     react-router-dom: ^6.4.2
     style-loader: ^3.0.0
+    ts-deepmerge: ^4.0.0
     ts-loader: ^9.2.2
     typescript: ~4.5.4
   languageName: unknown
